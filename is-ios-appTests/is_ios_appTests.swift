@@ -1,10 +1,3 @@
-//
-//  is_ios_appTests.swift
-//  is-ios-appTests
-//
-//  Created by Alexander on 18.03.2026.
-//
-
 import Testing
 @testable import is_ios_app
 
