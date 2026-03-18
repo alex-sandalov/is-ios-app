@@ -40,16 +40,6 @@
 			path = "is-ios-app";
 			sourceTree = "<group>";
 		};
-		110769D32F6A0DFE008D7836 /* is-ios-appTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "is-ios-appTests";
-			sourceTree = "<group>";
-		};
-		110769DD2F6A0DFE008D7836 /* is-ios-appUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "is-ios-appUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +72,6 @@
 			children = (
 				11076A352F6A1AEC008D7836 /* README.md */,
 				110769C52F6A0DFD008D7836 /* is-ios-app */,
-				110769D32F6A0DFE008D7836 /* is-ios-appTests */,
-				110769DD2F6A0DFE008D7836 /* is-ios-appUITests */,
 				110769C42F6A0DFD008D7836 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -136,9 +124,6 @@
 			dependencies = (
 				110769D22F6A0DFE008D7836 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				110769D32F6A0DFE008D7836 /* is-ios-appTests */,
-			);
 			name = "is-ios-appTests";
 			packageProductDependencies = (
 			);
@@ -158,9 +143,6 @@
 			);
 			dependencies = (
 				110769DC2F6A0DFE008D7836 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				110769DD2F6A0DFE008D7836 /* is-ios-appUITests */,
 			);
 			name = "is-ios-appUITests";
 			packageProductDependencies = (
