@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		11076A362F6A1AF2008D7836 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 11076A352F6A1AEC008D7836 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		110769D12F6A0DFE008D7836 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,22 +31,13 @@
 		110769C32F6A0DFD008D7836 /* is-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "is-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		110769D02F6A0DFE008D7836 /* is-ios-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "is-ios-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		110769DA2F6A0DFE008D7836 /* is-ios-appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "is-ios-appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		11076A352F6A1AEC008D7836 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		110769C52F6A0DFD008D7836 /* is-ios-app */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "is-ios-app";
-			sourceTree = "<group>";
-		};
-		110769D32F6A0DFE008D7836 /* is-ios-appTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "is-ios-appTests";
-			sourceTree = "<group>";
-		};
-		110769DD2F6A0DFE008D7836 /* is-ios-appUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "is-ios-appUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,9 +70,8 @@
 		110769BA2F6A0DFD008D7836 = {
 			isa = PBXGroup;
 			children = (
+				11076A352F6A1AEC008D7836 /* README.md */,
 				110769C52F6A0DFD008D7836 /* is-ios-app */,
-				110769D32F6A0DFE008D7836 /* is-ios-appTests */,
-				110769DD2F6A0DFE008D7836 /* is-ios-appUITests */,
 				110769C42F6A0DFD008D7836 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,9 +124,6 @@
 			dependencies = (
 				110769D22F6A0DFE008D7836 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				110769D32F6A0DFE008D7836 /* is-ios-appTests */,
-			);
 			name = "is-ios-appTests";
 			packageProductDependencies = (
 			);
@@ -153,9 +144,6 @@
 			dependencies = (
 				110769DC2F6A0DFE008D7836 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				110769DD2F6A0DFE008D7836 /* is-ios-appUITests */,
-			);
 			name = "is-ios-appUITests";
 			packageProductDependencies = (
 			);
@@ -175,6 +163,7 @@
 				TargetAttributes = {
 					110769C22F6A0DFD008D7836 = {
 						CreatedOnToolsVersion = 26.2;
+						LastSwiftMigration = 2620;
 					};
 					110769CF2F6A0DFE008D7836 = {
 						CreatedOnToolsVersion = 26.2;
@@ -212,6 +201,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11076A362F6A1AF2008D7836 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +383,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
@@ -413,6 +404,7 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -424,6 +416,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
