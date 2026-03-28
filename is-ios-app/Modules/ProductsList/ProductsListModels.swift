@@ -12,7 +12,7 @@ enum ProductsListModuleOutput: Equatable {
 struct ProductListItem: Equatable {
     let id: String
     let title: String
-    let subtitle: String
+    let subtitle: String?
     let amountText: String
     let statusText: String
 }
