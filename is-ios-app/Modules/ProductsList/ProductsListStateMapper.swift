@@ -45,6 +45,7 @@ struct ProductsListStateMapper: ProductsListStateMapping {
 
     private func makeSubtitle(for product: BankProduct) -> String? {
         let typeText: String
+
         switch product.type {
         case .account:
             typeText = "Счёт"
@@ -54,11 +55,11 @@ struct ProductsListStateMapper: ProductsListStateMapping {
             typeText = "Вклад"
         }
 
-        if let maskedNumber = product.maskedNumber, !maskedNumber.isEmpty {
-            return "\(typeText) • \(maskedNumber)"
+        guard let maskedNumber = product.maskedNumber, !maskedNumber.isEmpty else {
+            return typeText
         }
 
-        return typeText
+        return "\(typeText) • \(maskedNumber)"
     }
 
     private func makeAmountText(for amount: MoneyAmount) -> String {

@@ -150,7 +150,7 @@ final class AuthViewController: UIViewController, AuthView {
             brandLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
             brandLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
 
-            cardView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 40),
+            cardView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -80),
             cardView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             cardView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             cardView.topAnchor.constraint(greaterThanOrEqualTo: brandLabel.bottomAnchor, constant: 32),
@@ -216,6 +216,11 @@ final class AuthViewController: UIViewController, AuthView {
 
         scrollView.contentInset.bottom = intersection.height
         scrollView.verticalScrollIndicatorInsets.bottom = intersection.height
+
+        if intersection.height > 0 {
+            let buttonFrame = loginButton.convert(loginButton.bounds, to: scrollView)
+            scrollView.scrollRectToVisible(buttonFrame.insetBy(dx: 0, dy: -16), animated: true)
+        }
     }
 }
 
@@ -230,3 +235,4 @@ extension AuthViewController: UITextFieldDelegate {
         return true
     }
 }
+
