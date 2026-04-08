@@ -1,11 +1,13 @@
 import Foundation
 
+@MainActor
 protocol ProductsListView: AnyObject {
     func render(_ state: ProductsListViewState)
 }
 
 protocol ProductsListPresenter {
     func didLoad()
+    func didTapRetry()
     func didSelectProduct(id: String)
     func didTapLogout()
 }
