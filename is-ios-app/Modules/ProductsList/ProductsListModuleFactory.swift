@@ -14,7 +14,7 @@ final class ProductsListModuleFactory: ProductsListModuleBuilding {
 
     @MainActor
     func makeModule(session: UserSession) -> UIViewController {
-        let viewController = ProductsListStubViewController()
+        let viewController = ProductsListViewController()
         let router = ProductsListRouterImpl()
 
         let networkClient = URLSessionNetworkClient(urlSession: .shared)
