@@ -4,12 +4,10 @@ import UIKit
 final class ProductsListViewController: UIViewController {
     var presenter: ProductsListPresenter?
 
+    private var searchBarView = DSSearchBarView()
     private var tableView = UITableView(frame: .zero, style: .plain)
-    private var activityIndicator = UIActivityIndicatorView(style: .large)
-    private var messageLabel = UILabel()
-    private var retryButton = UIButton(type: .system)
-    private var searchController = UISearchController(searchResultsController: nil)
     private var refreshControl = UIRefreshControl()
+    private var stateView = DSStateView()
     private var listManager = ProductsListTableManager()
 
     override func loadView() {
@@ -19,45 +17,37 @@ final class ProductsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Продукты"
-        view.backgroundColor = .systemBackground
-        view.tintColor = .systemBlue
+        view.backgroundColor = DS.Colors.background
 
         setupNavigationBar()
         setupViews()
         setupHierarchy()
         setupLayout()
         setupTableManager()
-        setupSearch()
         setupRefreshControl()
 
         presenter?.didLoad()
     }
 
-    func render(_ state: ProductsListViewState) {
-        refreshControl.endRefreshing()
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchBarView.resignFocus()
+    }
 
-        switch state {
-        case .idle:
-            showIdleState()
+    func render(config: ProductsListScreenConfig) {
+        title = config.titleText
+        navigationItem.title = config.titleText
 
-        case .loading:
-            showLoadingState()
+        searchBarView.configure(with: config.searchBarConfig)
+        stateView.configure(with: config.stateViewConfig)
+        listManager.configure(with: config.items, in: tableView)
 
-        case .content(let items):
-            showContentState(items)
-
-        case .empty(let message):
-            showMessageState(message: message, showsRetry: false)
-
-        case .error(let message):
-            showMessageState(message: message, showsRetry: true)
-        }
+        tableView.isHidden = config.stateViewConfig.style != .hidden && config.items.isEmpty
     }
 
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
-
+        navigationItem.largeTitleDisplayMode = .always
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Выйти",
             style: .plain,
@@ -67,59 +57,39 @@ final class ProductsListViewController: UIViewController {
     }
 
     private func setupViews() {
+        searchBarView.delegate = self
+
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        retryButton.translatesAutoresizingMaskIntoConstraints = false
+        stateView.translatesAutoresizingMaskIntoConstraints = false
 
-        tableView.register(ProductListCell.self, forCellReuseIdentifier: ProductListCell.reuseIdentifier)
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 72
-        tableView.tableFooterView = UIView()
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        tableView.isHidden = true
-
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = .systemBlue
-
-        messageLabel.font = .systemFont(ofSize: 17, weight: .regular)
-        messageLabel.textColor = .secondaryLabel
-        messageLabel.textAlignment = .center
-        messageLabel.numberOfLines = 0
-        messageLabel.isHidden = true
-
-        retryButton.configuration = .filled()
-        retryButton.configuration?.title = "Повторить"
-        retryButton.configuration?.baseBackgroundColor = .systemBlue
-        retryButton.configuration?.baseForegroundColor = .white
-        retryButton.isHidden = true
-        retryButton.addTarget(self, action: #selector(didTapRetry), for: .touchUpInside)
+        tableView.estimatedRowHeight = 88
+        tableView.register(ProductListCell.self, forCellReuseIdentifier: ProductListCell.reuseIdentifier)
     }
 
     private func setupHierarchy() {
+        view.addSubview(searchBarView)
         view.addSubview(tableView)
-        view.addSubview(activityIndicator)
-        view.addSubview(messageLabel)
-        view.addSubview(retryButton)
+        view.addSubview(stateView)
     }
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchBarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: DS.Spacing.s),
+            searchBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: DS.Spacing.m),
+            searchBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -DS.Spacing.m),
+
+            tableView.topAnchor.constraint(equalTo: searchBarView.bottomAnchor, constant: DS.Spacing.s),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-
-            messageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            messageLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
-            messageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            messageLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-
-            retryButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 16),
-            retryButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            stateView.topAnchor.constraint(equalTo: searchBarView.bottomAnchor, constant: DS.Spacing.s),
+            stateView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            stateView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            stateView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 
@@ -129,59 +99,10 @@ final class ProductsListViewController: UIViewController {
         tableView.delegate = listManager
     }
 
-    private func setupSearch() {
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Поиск продуктов"
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.tintColor = .systemBlue
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        definesPresentationContext = true
-    }
-
     private func setupRefreshControl() {
-        refreshControl.tintColor = .systemBlue
+        refreshControl.tintColor = DS.Colors.primary
         refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
-    }
-
-    private func showIdleState() {
-        activityIndicator.stopAnimating()
-        tableView.isHidden = true
-        messageLabel.isHidden = true
-        retryButton.isHidden = true
-        listManager.clear(in: tableView)
-    }
-
-    private func showLoadingState() {
-        activityIndicator.startAnimating()
-        tableView.isHidden = true
-        messageLabel.isHidden = true
-        retryButton.isHidden = true
-    }
-
-    private func showContentState(_ items: [ProductListItem]) {
-        activityIndicator.stopAnimating()
-        messageLabel.isHidden = true
-        retryButton.isHidden = true
-        tableView.isHidden = false
-        listManager.setItems(items, in: tableView)
-    }
-
-    private func showMessageState(message: String, showsRetry: Bool) {
-        activityIndicator.stopAnimating()
-        tableView.isHidden = true
-        listManager.clear(in: tableView)
-
-        messageLabel.isHidden = false
-        messageLabel.text = message
-
-        retryButton.isHidden = !showsRetry
-    }
-
-    @objc
-    private func didTapRetry() {
-        presenter?.didTapRetry()
     }
 
     @objc
@@ -200,14 +121,14 @@ extension ProductsListViewController: ProductsListView {}
 
 @MainActor
 extension ProductsListViewController: ProductsListTableManagerDelegate {
-    func didSelectProduct(id: String) {
-        presenter?.didSelectProduct(id: id)
+    func didSelectProduct(at index: Int) {
+        presenter?.didSelectProduct(at: index)
     }
 }
 
 @MainActor
-extension ProductsListViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        presenter?.didChangeSearchQuery(searchController.searchBar.text)
+extension ProductsListViewController: DSSearchBarViewDelegate {
+    func didChangeSearchText(_ text: String?) {
+        presenter?.didChangeSearchText(text)
     }
 }

@@ -19,9 +19,11 @@ final class ProductsListModuleFactory: ProductsListModuleBuilding {
 
         let networkClient = URLSessionNetworkClient(urlSession: .shared)
         let requestFactory = ProductsRequestFactory(productsURL: productsURL)
+        let domainMapper = ProductDomainMapper()
         let repository = RemoteProductsRepository(
             networkClient: networkClient,
-            requestFactory: requestFactory
+            requestFactory: requestFactory,
+            domainMapper: domainMapper
         )
         let loadProductsUseCase = LoadProductsUseCaseImpl(repository: repository)
         let stateMapper = ProductsListStateMapper()

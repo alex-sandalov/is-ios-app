@@ -1,26 +1,15 @@
-import Foundation
+import UIKit
 
-struct ProductsListModuleInput: Equatable {
-    let session: UserSession
-}
-
-enum ProductsListModuleOutput: Equatable {
-    case didSelectProduct(id: String)
-    case didRequestLogout
-}
-
-struct ProductListItem: Equatable {
-    let id: String
-    let title: String
-    let subtitle: String?
+struct ProductListCellConfig {
+    let titleText: String
+    let subtitleText: String?
     let amountText: String
     let statusText: String
 }
 
-enum ProductsListViewState: Equatable {
-    case idle
-    case loading
-    case content([ProductListItem])
-    case empty(message: String)
-    case error(message: String)
+struct ProductsListScreenConfig {
+    let titleText: String
+    let searchBarConfig: DSSearchBarView.Config
+    let stateViewConfig: DSStateView.Config
+    let items: [ProductListCellConfig]
 }
