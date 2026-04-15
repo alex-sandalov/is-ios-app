@@ -2,22 +2,17 @@ import UIKit
 
 @MainActor
 protocol ProductsListTableManagerDelegate: AnyObject {
-    func didSelectProduct(id: String)
+    func didSelectProduct(at index: Int)
 }
 
 @MainActor
 final class ProductsListTableManager: NSObject {
     weak var delegate: ProductsListTableManagerDelegate?
 
-    private var items: [ProductListItem] = []
+    private var items: [ProductListCellConfig] = []
 
-    func setItems(_ items: [ProductListItem], in tableView: UITableView) {
+    func configure(with items: [ProductListCellConfig], in tableView: UITableView) {
         self.items = items
-        tableView.reloadData()
-    }
-
-    func clear(in tableView: UITableView) {
-        items = []
         tableView.reloadData()
     }
 }
@@ -33,11 +28,10 @@ extension ProductsListTableManager: UITableViewDataSource {
             withIdentifier: ProductListCell.reuseIdentifier,
             for: indexPath
         ) as? ProductListCell else {
-            return UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+            return UITableViewCell()
         }
 
-        let item = items[indexPath.row]
-        cell.configure(with: item)
+        cell.configure(with: items[indexPath.row])
         return cell
     }
 }
@@ -45,8 +39,7 @@ extension ProductsListTableManager: UITableViewDataSource {
 @MainActor
 extension ProductsListTableManager: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = items[indexPath.row]
-        delegate?.didSelectProduct(id: item.id)
+        delegate?.didSelectProduct(at: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

@@ -9,7 +9,8 @@ final class ProductsListPresenterImpl: ProductsListPresenter {
     private let session: UserSession
 
     private var loadTask: Task<Void, Never>?
-    private var allItems: [ProductListItem] = []
+    private var allProducts: [BankProduct] = []
+    private var visibleProducts: [BankProduct] = []
     private var currentQuery: String = ""
 
     init(
@@ -31,7 +32,7 @@ final class ProductsListPresenterImpl: ProductsListPresenter {
     }
 
     func didLoad() {
-        guard loadTask == nil, allItems.isEmpty else { return }
+        guard loadTask == nil, allProducts.isEmpty else { return }
         loadProducts(showLoadingState: true)
     }
 
@@ -48,21 +49,22 @@ final class ProductsListPresenterImpl: ProductsListPresenter {
         router.openAuth()
     }
 
-    func didSelectProduct(id: String) {
-        router.openProductDetails(productId: id, session: session)
+    func didSelectProduct(at index: Int) {
+        guard visibleProducts.indices.contains(index) else { return }
+        let product = visibleProducts[index]
+        router.openProductDetails(productId: product.id, session: session)
     }
 
-    func didChangeSearchQuery(_ query: String?) {
-        let query = query ?? ""
-        currentQuery = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        renderFilteredItems()
+    func didChangeSearchText(_ text: String?) {
+        currentQuery = (text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        rebuildVisibleProductsAndRender()
     }
 
     private func loadProducts(showLoadingState: Bool) {
         loadTask?.cancel()
 
         if showLoadingState {
-            view?.render(.loading)
+            view?.render(config: makeLoadingConfig())
         }
 
         loadTask = Task { [weak self] in
@@ -74,51 +76,107 @@ final class ProductsListPresenterImpl: ProductsListPresenter {
                 let products = try await loadProductsUseCase.execute(session: session)
                 try Task.checkCancellation()
 
-                let state = stateMapper.map(products: products)
-
-                switch state {
-                case .content(let items):
-                    allItems = items
-                    renderFilteredItems()
-                case .empty:
-                    allItems = []
-                    view?.render(state)
-                case .idle, .loading, .error:
-                    view?.render(state)
-                }
+                allProducts = products
+                rebuildVisibleProductsAndRender()
             } catch is CancellationError {
                 return
             } catch {
-                let message = stateMapper.map(error: error)
-                view?.render(.error(message: message))
+                view?.render(config: makeErrorConfig(message: stateMapper.map(error: error)))
             }
         }
     }
 
-    private func renderFilteredItems() {
-        guard !allItems.isEmpty else {
-            view?.render(.empty(message: "Список продуктов пуст"))
-            return
-        }
-
-        guard !currentQuery.isEmpty else {
-            view?.render(.content(allItems))
-            return
-        }
-
-        let loweredQuery = currentQuery.lowercased()
-
-        let filteredItems = allItems.filter { item in
-            item.title.lowercased().contains(loweredQuery)
-            || (item.subtitle?.lowercased().contains(loweredQuery) ?? false)
-            || item.amountText.lowercased().contains(loweredQuery)
-            || item.statusText.lowercased().contains(loweredQuery)
-        }
-
-        if filteredItems.isEmpty {
-            view?.render(.empty(message: "Ничего не найдено"))
+    private func rebuildVisibleProductsAndRender() {
+        if currentQuery.isEmpty {
+            visibleProducts = allProducts
         } else {
-            view?.render(.content(filteredItems))
+            let loweredQuery = currentQuery.lowercased()
+            visibleProducts = allProducts.filter { product in
+                let subtitle = stateMapper.map(products: [product]).first?.subtitleText?.lowercased()
+                let amount = stateMapper.map(products: [product]).first?.amountText.lowercased()
+                let status = stateMapper.map(products: [product]).first?.statusText.lowercased()
+
+                return product.title.lowercased().contains(loweredQuery)
+                    || (subtitle?.contains(loweredQuery) ?? false)
+                    || (amount?.contains(loweredQuery) ?? false)
+                    || (status?.contains(loweredQuery) ?? false)
+            }
         }
+
+        if allProducts.isEmpty {
+            view?.render(config: makeEmptyConfig(message: "Список продуктов пуст"))
+            return
+        }
+
+        if !currentQuery.isEmpty && visibleProducts.isEmpty {
+            view?.render(config: makeEmptyConfig(message: "Ничего не найдено"))
+            return
+        }
+
+        let itemConfigs = stateMapper.map(products: visibleProducts)
+        view?.render(config: makeContentConfig(items: itemConfigs))
+    }
+
+    private func makeBaseSearchConfig() -> DSSearchBarView.Config {
+        .init(
+            placeholder: "Поиск продуктов",
+            text: currentQuery.isEmpty ? nil : currentQuery
+        )
+    }
+
+    private func makeLoadingConfig() -> ProductsListScreenConfig {
+        ProductsListScreenConfig(
+            titleText: "Продукты",
+            searchBarConfig: makeBaseSearchConfig(),
+            stateViewConfig: .init(
+                style: .loading,
+                title: "Загрузка",
+                message: "Получаем список продуктов",
+                actionTitle: nil
+            ),
+            items: []
+        )
+    }
+
+    private func makeErrorConfig(message: String) -> ProductsListScreenConfig {
+        ProductsListScreenConfig(
+            titleText: "Продукты",
+            searchBarConfig: makeBaseSearchConfig(),
+            stateViewConfig: .init(
+                style: .error,
+                title: "Ошибка",
+                message: message,
+                actionTitle: "Повторить"
+            ),
+            items: []
+        )
+    }
+
+    private func makeEmptyConfig(message: String) -> ProductsListScreenConfig {
+        ProductsListScreenConfig(
+            titleText: "Продукты",
+            searchBarConfig: makeBaseSearchConfig(),
+            stateViewConfig: .init(
+                style: .empty,
+                title: "Пусто",
+                message: message,
+                actionTitle: nil
+            ),
+            items: []
+        )
+    }
+
+    private func makeContentConfig(items: [ProductListCellConfig]) -> ProductsListScreenConfig {
+        ProductsListScreenConfig(
+            titleText: "Продукты",
+            searchBarConfig: makeBaseSearchConfig(),
+            stateViewConfig: .init(
+                style: .hidden,
+                title: nil,
+                message: nil,
+                actionTitle: nil
+            ),
+            items: items
+        )
     }
 }

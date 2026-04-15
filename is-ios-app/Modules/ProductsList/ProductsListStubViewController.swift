@@ -1,12 +1,13 @@
 import UIKit
 
+@MainActor
 final class ProductsListStubViewController: UIViewController, ProductsListView {
     var presenter: ProductsListPresenter?
 
-    private let titleLabel = UILabel()
-    private let stateLabel = UILabel()
-    private let retryButton = UIButton(type: .system)
-    private let activityIndicator = UIActivityIndicatorView(style: .large)
+    private var titleLabel = UILabel()
+    private var stateLabel = UILabel()
+    private var retryButton = UIButton(type: .system)
+    private var activityIndicator = UIActivityIndicatorView(style: .large)
 
     override func loadView() {
         view = UIView()
@@ -15,7 +16,6 @@ final class ProductsListStubViewController: UIViewController, ProductsListView {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Мои продукты"
         view.backgroundColor = .systemBackground
 
         setupViews()
@@ -25,43 +25,49 @@ final class ProductsListStubViewController: UIViewController, ProductsListView {
         presenter?.didLoad()
     }
 
-    func render(_ state: ProductsListViewState) {
-        switch state {
-        case .idle:
+    func render(config: ProductsListScreenConfig) {
+        title = config.titleText
+        titleLabel.text = config.titleText
+
+        switch config.stateViewConfig.style {
+        case .hidden:
             activityIndicator.stopAnimating()
             retryButton.isHidden = true
-            stateLabel.text = "Ожидание загрузки"
+
+            if config.items.isEmpty {
+                stateLabel.text = "Ожидание загрузки"
+            } else {
+                stateLabel.text = config.items
+                    .map { item in
+                        [
+                            item.titleText,
+                            item.subtitleText,
+                            item.amountText,
+                            item.statusText
+                        ]
+                        .compactMap { $0 }
+                        .joined(separator: " | ")
+                    }
+                    .joined(separator: "\n")
+            }
 
         case .loading:
             activityIndicator.startAnimating()
             retryButton.isHidden = true
-            stateLabel.text = "Загрузка..."
+            stateLabel.text = config.stateViewConfig.message ?? "Загрузка..."
 
-        case .content(let items):
+        case .empty:
             activityIndicator.stopAnimating()
             retryButton.isHidden = true
-            stateLabel.text = items
-                .map { item in
-                    [
-                        item.title,
-                        item.subtitle,
-                        item.amountText,
-                        item.statusText
-                    ]
-                    .compactMap { $0 }
-                    .joined(separator: " | ")
-                }
-                .joined(separator: "\n")
+            stateLabel.text = config.stateViewConfig.message ?? "Пусто"
 
-        case .empty(let message):
+        case .error:
             activityIndicator.stopAnimating()
-            retryButton.isHidden = false
-            stateLabel.text = message
-
-        case .error(let message):
-            activityIndicator.stopAnimating()
-            retryButton.isHidden = false
-            stateLabel.text = message
+            retryButton.isHidden = config.stateViewConfig.actionTitle == nil
+            stateLabel.text = config.stateViewConfig.message ?? "Ошибка"
+            if let actionTitle = config.stateViewConfig.actionTitle {
+                retryButton.setTitle(actionTitle, for: .normal)
+            }
         }
     }
 
@@ -72,7 +78,6 @@ final class ProductsListStubViewController: UIViewController, ProductsListView {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.font = .systemFont(ofSize: 28, weight: .bold)
-        titleLabel.text = "Список продуктов"
 
         stateLabel.font = .systemFont(ofSize: 16, weight: .regular)
         stateLabel.textColor = .secondaryLabel

@@ -1,27 +1,20 @@
 import Foundation
 
 protocol ProductsListStateMapping {
-    func map(products: [BankProduct]) -> ProductsListViewState
+    func map(products: [BankProduct]) -> [ProductListCellConfig]
     func map(error: Error) -> String
 }
 
 struct ProductsListStateMapper: ProductsListStateMapping {
-    func map(products: [BankProduct]) -> ProductsListViewState {
-        guard !products.isEmpty else {
-            return .empty(message: "Список продуктов пуст")
-        }
-
-        let items = products.map { product in
-            ProductListItem(
-                id: product.id,
-                title: product.title,
-                subtitle: makeSubtitle(for: product),
+    func map(products: [BankProduct]) -> [ProductListCellConfig] {
+        products.map { product in
+            ProductListCellConfig(
+                titleText: product.title,
+                subtitleText: makeSubtitle(for: product),
                 amountText: makeAmountText(for: product.balance),
                 statusText: makeStatusText(for: product.status)
             )
         }
-
-        return .content(items)
     }
 
     func map(error: Error) -> String {

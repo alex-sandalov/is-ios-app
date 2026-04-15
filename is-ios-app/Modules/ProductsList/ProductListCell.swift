@@ -3,12 +3,14 @@ import UIKit
 final class ProductListCell: UITableViewCell {
     static let reuseIdentifier = "ProductListCell"
 
+    private var cardView = DSCardView()
     private var titleLabel = UILabel()
     private var subtitleLabel = UILabel()
     private var amountLabel = UILabel()
     private var statusLabel = UILabel()
-    private var textContainerStackView = UIStackView()
-    private var rightContainerStackView = UIStackView()
+
+    private var textStackView = UIStackView()
+    private var rightStackView = UIStackView()
     private var rootStackView = UIStackView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -31,84 +33,74 @@ final class ProductListCell: UITableViewCell {
         statusLabel.text = nil
     }
 
-    func configure(with viewModel: ProductListItem) {
-        titleLabel.text = viewModel.title
-        subtitleLabel.text = viewModel.subtitle
-        amountLabel.text = viewModel.amountText
-        statusLabel.text = viewModel.statusText
-        subtitleLabel.isHidden = viewModel.subtitle == nil
+    func configure(with config: ProductListCellConfig) {
+        titleLabel.text = config.titleText
+        subtitleLabel.text = config.subtitleText
+        amountLabel.text = config.amountText
+        statusLabel.text = config.statusText
+        subtitleLabel.isHidden = config.subtitleText == nil
     }
 
     private func setupAppearance() {
-        selectionStyle = .default
-        accessoryType = .disclosureIndicator
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        selectionStyle = .none
 
-        backgroundColor = .systemBackground
-        contentView.backgroundColor = .systemBackground
+        titleLabel.apply(.body)
+        titleLabel.font = DS.Typography.bodySemibold()
 
-        titleLabel.font = .systemFont(ofSize: 17, weight: .semibold)
-        titleLabel.textColor = .label
-        titleLabel.numberOfLines = 1
-
-        subtitleLabel.font = .systemFont(ofSize: 14, weight: .regular)
-        subtitleLabel.textColor = .secondaryLabel
+        subtitleLabel.apply(.captionSecondary)
         subtitleLabel.numberOfLines = 1
 
-        amountLabel.font = .systemFont(ofSize: 16, weight: .semibold)
-        amountLabel.textColor = .systemBlue
+        amountLabel.apply(.bodyAccent)
         amountLabel.textAlignment = .right
-        amountLabel.numberOfLines = 1
 
-        statusLabel.font = .systemFont(ofSize: 13, weight: .medium)
-        statusLabel.textColor = .systemBlue
+        statusLabel.apply(.captionSecondary)
         statusLabel.textAlignment = .right
-        statusLabel.numberOfLines = 1
-        statusLabel.backgroundColor = .systemBlue.withAlphaComponent(0.08)
-        statusLabel.layer.cornerRadius = 8
-        statusLabel.layer.masksToBounds = true
 
-        textContainerStackView.axis = .vertical
-        textContainerStackView.spacing = 4
-        textContainerStackView.alignment = .fill
-        textContainerStackView.distribution = .fill
+        textStackView.translatesAutoresizingMaskIntoConstraints = false
+        textStackView.axis = .vertical
+        textStackView.spacing = DS.Spacing.xxs
+        textStackView.alignment = .fill
 
-        rightContainerStackView.axis = .vertical
-        rightContainerStackView.spacing = 6
-        rightContainerStackView.alignment = .trailing
-        rightContainerStackView.distribution = .fill
+        rightStackView.translatesAutoresizingMaskIntoConstraints = false
+        rightStackView.axis = .vertical
+        rightStackView.spacing = DS.Spacing.xxs
+        rightStackView.alignment = .trailing
 
+        rootStackView.translatesAutoresizingMaskIntoConstraints = false
         rootStackView.axis = .horizontal
-        rootStackView.spacing = 12
+        rootStackView.spacing = DS.Spacing.s
         rootStackView.alignment = .center
-        rootStackView.distribution = .fill
     }
 
     private func setupHierarchy() {
-        textContainerStackView.translatesAutoresizingMaskIntoConstraints = false
-        rightContainerStackView.translatesAutoresizingMaskIntoConstraints = false
-        rootStackView.translatesAutoresizingMaskIntoConstraints = false
+        textStackView.addArrangedSubview(titleLabel)
+        textStackView.addArrangedSubview(subtitleLabel)
 
-        textContainerStackView.addArrangedSubview(titleLabel)
-        textContainerStackView.addArrangedSubview(subtitleLabel)
+        rightStackView.addArrangedSubview(amountLabel)
+        rightStackView.addArrangedSubview(statusLabel)
 
-        rightContainerStackView.addArrangedSubview(amountLabel)
-        rightContainerStackView.addArrangedSubview(statusLabel)
+        rootStackView.addArrangedSubview(textStackView)
+        rootStackView.addArrangedSubview(rightStackView)
 
-        rootStackView.addArrangedSubview(textContainerStackView)
-        rootStackView.addArrangedSubview(rightContainerStackView)
-
-        contentView.addSubview(rootStackView)
+        contentView.addSubview(cardView)
+        cardView.addSubview(rootStackView)
     }
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            rootStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            rootStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            rootStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            rootStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
+            cardView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: DS.Spacing.xs),
+            cardView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: DS.Spacing.m),
+            cardView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -DS.Spacing.m),
+            cardView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -DS.Spacing.xs),
 
-            rightContainerStackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 100),
-            statusLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 24)
+            rootStackView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: DS.Spacing.s),
+            rootStackView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: DS.Spacing.m),
+            rootStackView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -DS.Spacing.m),
+            rootStackView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -DS.Spacing.s),
+
+            rightStackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 90)
         ])
     }
 }

@@ -1,16 +1,10 @@
-import Foundation
+import UIKit
 
-struct AuthModuleInput: Equatable {
-    let prefilledLogin: String?
-}
-
-enum AuthModuleOutput: Equatable {
-    case didAuthorize(UserSession)
-}
-
-enum AuthViewState: Equatable {
-    case idle
-    case loading
-    case error(message: String)
-    case authorized
+struct AuthScreenConfig {
+    let titleText: String
+    let subtitleText: String
+    let loginFieldConfig: DSTextFieldView.Config
+    let passwordFieldConfig: DSTextFieldView.Config
+    let loginButtonConfig: DSButton.Config
+    let stateViewConfig: DSStateView.Config
 }

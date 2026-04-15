@@ -2,16 +2,16 @@ import Foundation
 
 @MainActor
 protocol ProductsListView: AnyObject {
-    func render(_ state: ProductsListViewState)
+    func render(config: ProductsListScreenConfig)
 }
 
 @MainActor
-protocol ProductsListPresenter {
+protocol ProductsListPresenter: AnyObject {
     func didLoad()
     func didTapRetry()
     func didTapLogout()
-    func didSelectProduct(id: String)
-    func didChangeSearchQuery(_ query: String?)
+    func didSelectProduct(at index: Int)
+    func didChangeSearchText(_ text: String?)
     func didPullToRefresh()
 }
 
