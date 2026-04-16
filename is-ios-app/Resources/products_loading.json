@@ -1,0 +1,32 @@
+{
+  "root": {
+    "id": "products_loading_root",
+    "type": "scroll",
+    "content": {
+      "spacing": "m",
+      "padding": "m",
+      "backgroundColor": "background"
+    },
+    "subviews": [
+      {
+        "id": "products_loading_title",
+        "type": "label",
+        "content": {
+          "text": "Продукты",
+          "textStyle": "largeTitle",
+          "color": "textPrimary",
+          "alignment": "left",
+          "numberOfLines": 0
+        }
+      },
+      {
+        "id": "products_loading_state",
+        "type": "loading",
+        "content": {
+          "title": "Загрузка",
+          "message": "Получаем список продуктов"
+        }
+      }
+    ]
+  }
+}

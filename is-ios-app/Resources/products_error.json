@@ -1,0 +1,37 @@
+{
+  "root": {
+    "id": "products_error_root",
+    "type": "scroll",
+    "content": {
+      "spacing": "m",
+      "padding": "m",
+      "backgroundColor": "background"
+    },
+    "subviews": [
+      {
+        "id": "products_error_title",
+        "type": "label",
+        "content": {
+          "text": "Продукты",
+          "textStyle": "largeTitle",
+          "color": "textPrimary",
+          "alignment": "left",
+          "numberOfLines": 0
+        }
+      },
+      {
+        "id": "products_error_state",
+        "type": "empty",
+        "content": {
+          "title": "Ошибка",
+          "subtitle": "{{errorMessage}}",
+          "actionTitle": "Повторить"
+        },
+        "action": {
+          "type": "callback",
+          "id": "products_retry_tap"
+        }
+      }
+    ]
+  }
+}

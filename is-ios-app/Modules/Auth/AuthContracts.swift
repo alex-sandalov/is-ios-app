@@ -2,7 +2,7 @@ import Foundation
 
 @MainActor
 protocol AuthView: AnyObject {
-    func render(config: AuthScreenConfig)
+    func render(screen: AuthBDUIScreen)
 }
 
 @MainActor
@@ -12,6 +12,6 @@ protocol AuthPresenter: AnyObject {
 }
 
 @MainActor
-protocol AuthRouter {
+protocol AuthRouter: AnyObject {
     func openProductsList(session: UserSession)
 }

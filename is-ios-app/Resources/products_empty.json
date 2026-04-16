@@ -1,0 +1,33 @@
+{
+  "root": {
+    "id": "products_empty_root",
+    "type": "scroll",
+    "content": {
+      "spacing": "m",
+      "padding": "m",
+      "backgroundColor": "background"
+    },
+    "subviews": [
+      {
+        "id": "products_empty_title",
+        "type": "label",
+        "content": {
+          "text": "Продукты",
+          "textStyle": "largeTitle",
+          "color": "textPrimary",
+          "alignment": "left",
+          "numberOfLines": 0
+        }
+      },
+      {
+        "id": "products_empty_state",
+        "type": "empty",
+        "content": {
+          "title": "Пусто",
+          "subtitle": "{{emptyMessage}}",
+          "actionTitle": null
+        }
+      }
+    ]
+  }
+}

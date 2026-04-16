@@ -1,0 +1,109 @@
+{
+  "root": {
+    "id": "auth_error_root",
+    "type": "scroll",
+    "content": {
+      "spacing": "l",
+      "padding": "m",
+      "backgroundColor": "background"
+    },
+    "subviews": [
+      {
+        "id": "auth_error_header_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "elevatedSurface"
+        },
+        "subviews": [
+          {
+            "id": "auth_error_header_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "s",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "auth_error_title",
+                "type": "label",
+                "content": {
+                  "text": "Авторизация",
+                  "textStyle": "largeTitle",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "auth_error_subtitle",
+                "type": "label",
+                "content": {
+                  "text": "Не удалось войти с первого раза",
+                  "textStyle": "bodySecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "auth_error_state_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "surface"
+        },
+        "subviews": [
+          {
+            "id": "auth_error_state",
+            "type": "empty",
+            "content": {
+              "title": "Ошибка",
+              "subtitle": "{{errorMessage}}",
+              "actionTitle": null
+            }
+          }
+        ]
+      },
+      {
+        "id": "auth_error_button_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "surface"
+        },
+        "subviews": [
+          {
+            "id": "auth_error_button_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "s",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "auth_error_button",
+                "type": "button",
+                "content": {
+                  "title": "Попробовать снова",
+                  "style": "primary",
+                  "isEnabled": true
+                },
+                "action": {
+                  "type": "callback",
+                  "id": "auth_login_tap"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
