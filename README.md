@@ -238,3 +238,41 @@ enum ProductDetailsViewState: Equatable {
 - `ProductsListViewState`
 - `ProductDetailsViewState`
 - `DomainError`
+
+
+# Лабораторная №7 — Backend Driven UI
+
+## Что сделано
+Реализован Backend Driven UI:
+- экран описывается JSON-моделью
+- JSON декодится в BDUI-структуры
+- через mapper-ы модель преобразуется в `UIView`-дерево
+- BDUI применён к экрану авторизации и экрану списка продуктов
+
+## Дополнительные задания
+
+### Доп: Actions
+Реализованы действия:
+- `callback`
+- `reload`
+- `route`
+
+Через них обрабатываются:
+- нажатия на кнопки
+- повторная загрузка
+- callback-и из UI в экран / presenter
+
+### Доп: Расширенная дизайн-система / больше 5 view types
+Поддержаны следующие типы BDUI-нód:
+- `label`
+- `button`
+- `vStack`
+- `hStack`
+- `card`
+- `scroll`
+- `container`
+- `spacer`
+- `divider`
+- `textField`
+- `loading`
+- `empty`
