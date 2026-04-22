@@ -15,7 +15,6 @@ final class ProductsListModuleFactory: ProductsListModuleBuilding {
     @MainActor
     func makeModule(session: UserSession) -> UIViewController {
         let viewController = ProductsListViewController()
-        let router = ProductsListRouterImpl()
 
         let networkClient = URLSessionNetworkClient(urlSession: .shared)
         let requestFactory = ProductsRequestFactory(productsURL: productsURL)
@@ -26,19 +25,16 @@ final class ProductsListModuleFactory: ProductsListModuleBuilding {
             domainMapper: domainMapper
         )
         let loadProductsUseCase = LoadProductsUseCaseImpl(repository: repository)
-        let stateMapper = ProductsListStateMapper()
+        let screenFactory = ProductsListBDUIScreenFactory()
 
         let presenter = ProductsListPresenterImpl(
             view: viewController,
-            router: router,
             loadProductsUseCase: loadProductsUseCase,
-            stateMapper: stateMapper,
+            screenFactory: screenFactory,
             session: session
         )
 
         viewController.presenter = presenter
-        router.viewController = viewController
-
         return viewController
     }
 }

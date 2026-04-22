@@ -13,24 +13,19 @@ final class DSTextFieldView: UIView {
     }
 
     private var titleLabel = UILabel()
+    private var textField = UITextField()
     private var errorLabel = UILabel()
     private var stackView = UIStackView()
 
-    var textField = UITextField()
+    var onTextChanged: ((String) -> Void)?
 
-    var inputText: String {
+    var currentText: String {
         textField.text ?? ""
     }
 
-    var delegate: UITextFieldDelegate? {
-        get { textField.delegate }
-        set { textField.delegate = newValue }
-    }
-
-    init() {
-        super.init(frame: .zero)
-        setupAppearance()
-        setupHierarchy()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
         setupLayout()
     }
 
@@ -48,59 +43,51 @@ final class DSTextFieldView: UIView {
         textField.returnKeyType = config.returnKeyType
 
         errorLabel.text = config.errorMessage
-        errorLabel.isHidden = config.errorMessage == nil
-        textField.layer.borderColor = (config.errorMessage == nil ? DS.Colors.border : DS.Colors.error).cgColor
+        errorLabel.isHidden = (config.errorMessage?.isEmpty ?? true)
     }
 
-    func focus() {
-        textField.becomeFirstResponder()
-    }
-
-    func resignFocus() {
-        textField.resignFirstResponder()
-    }
-
-    private func setupAppearance() {
+    private func setupUI() {
         translatesAutoresizingMaskIntoConstraints = false
-
-        titleLabel.apply(.captionSecondary)
-
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.backgroundColor = DS.Colors.elevatedSurface
-        textField.textColor = DS.Colors.textPrimary
-        textField.font = DS.Typography.body()
-        textField.layer.cornerRadius = DS.CornerRadius.m
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = DS.Colors.border.cgColor
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: DS.Spacing.m, height: 1))
-        textField.leftViewMode = .always
-        textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: DS.Spacing.m, height: 1))
-        textField.rightViewMode = .always
-        textField.heightAnchor.constraint(equalToConstant: 48).isActive = true
-
-        errorLabel.apply(.error)
-        errorLabel.numberOfLines = 0
-        errorLabel.isHidden = true
 
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = DS.Spacing.xs
+
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.apply(.captionSecondary)
+
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.borderStyle = .roundedRect
+        textField.backgroundColor = DS.Colors.surface
+        textField.layer.cornerRadius = DS.CornerRadius.m
+        textField.layer.masksToBounds = true
+        textField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        errorLabel.apply(.error)
+        errorLabel.numberOfLines = 0
+        errorLabel.isHidden = true
     }
 
-    private func setupHierarchy() {
+    private func setupLayout() {
+        addSubview(stackView)
+
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(textField)
         stackView.addArrangedSubview(errorLabel)
 
-        addSubview(stackView)
-    }
-
-    private func setupLayout() {
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+            textField.heightAnchor.constraint(equalToConstant: 48)
         ])
+    }
+
+    @objc
+    private func textDidChange() {
+        onTextChanged?(textField.text ?? "")
     }
 }

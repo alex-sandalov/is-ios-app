@@ -4,8 +4,10 @@ import UIKit
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
-    let productsURL = URL(string: "https://alfaitmo.ru/server/echo/409515%2Fbank%2Fproducts")!
-    
+    private let productsURL = URL(
+        string: "https://alfaitmo.ru/server/echo/409515%2Fbank%2Fproducts"
+    )!
+
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?

@@ -1,0 +1,75 @@
+{
+  "root": {
+    "id": "products_content_root",
+    "type": "scroll",
+    "content": {
+      "spacing": "m",
+      "padding": "m",
+      "backgroundColor": "background"
+    },
+    "subviews": [
+      {
+        "id": "products_content_title",
+        "type": "label",
+        "content": {
+          "text": "{{contentTitle}}",
+          "textStyle": "largeTitle",
+          "color": "textPrimary",
+          "alignment": "left",
+          "numberOfLines": 0
+        }
+      },
+      {
+        "id": "products_content_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "surface"
+        },
+        "subviews": [
+          {
+            "id": "products_content_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "s",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "products_content_subtitle",
+                "type": "label",
+                "content": {
+                  "text": "{{contentSubtitle}}",
+                  "textStyle": "bodySecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "products_divider",
+                "type": "divider",
+                "content": {
+                  "color": "border",
+                  "thickness": 1
+                }
+              },
+              {
+                "id": "products_hint",
+                "type": "label",
+                "content": {
+                  "text": "Экран списка собран через BDUI template",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
