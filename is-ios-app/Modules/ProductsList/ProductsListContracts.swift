@@ -12,4 +12,10 @@ protocol ProductsListPresenter: AnyObject {
     func didLoad()
     func didTapRetry()
     func didSearch(query: String)
+    func didTapRemoteBDUIScreen(_ screen: ProductsListRemoteBDUIScreen)
+}
+
+@MainActor
+protocol ProductsListRouter: AnyObject {
+    func openRemoteBDUIScreen(_ screen: ProductsListRemoteBDUIScreen)
 }

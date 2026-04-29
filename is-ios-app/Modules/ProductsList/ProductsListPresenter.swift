@@ -3,6 +3,7 @@ import Foundation
 @MainActor
 final class ProductsListPresenterImpl: ProductsListPresenter {
     private weak var view: ProductsListView?
+    private let router: ProductsListRouter
     private let loadProductsUseCase: LoadProductsUseCase
     private let screenFactory: ProductsListBDUIScreenFactory
     private let session: UserSession
@@ -11,11 +12,13 @@ final class ProductsListPresenterImpl: ProductsListPresenter {
 
     init(
         view: ProductsListView,
+        router: ProductsListRouter,
         loadProductsUseCase: LoadProductsUseCase,
         screenFactory: ProductsListBDUIScreenFactory,
         session: UserSession
     ) {
         self.view = view
+        self.router = router
         self.loadProductsUseCase = loadProductsUseCase
         self.screenFactory = screenFactory
         self.session = session
@@ -33,6 +36,7 @@ final class ProductsListPresenterImpl: ProductsListPresenter {
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
 
         let filtered: [BankProduct]
+
         if trimmed.isEmpty {
             filtered = allProducts
         } else {
@@ -49,6 +53,10 @@ final class ProductsListPresenterImpl: ProductsListPresenter {
         view?.renderScreen(screen)
     }
 
+    func didTapRemoteBDUIScreen(_ screen: ProductsListRemoteBDUIScreen) {
+        router.openRemoteBDUIScreen(screen)
+    }
+
     private func loadProducts() {
         view?.renderLoading()
 
@@ -57,7 +65,8 @@ final class ProductsListPresenterImpl: ProductsListPresenter {
 
             do {
                 let products = try await loadProductsUseCase.execute(session: session)
-                self.allProducts = products
+                allProducts = products
+
                 let screen = screenFactory.makeScreen(products: products)
                 view?.renderScreen(screen)
             } catch {

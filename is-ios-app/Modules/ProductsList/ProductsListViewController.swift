@@ -9,12 +9,13 @@ final class ProductsListViewController: UIViewController, ProductsListView {
     private let actionBinder = BDUIActionBinder()
     private let actionHandler = BDUIActionHandler()
 
-    private var rootStackView = UIStackView()
-    private var headerStackView = UIStackView()
-    private var titleLabel = UILabel()
-    private var subtitleLabel = UILabel()
-    private var searchFieldView = DSTextFieldView()
-    private var contentContainerView = UIView()
+    private let rootStackView = UIStackView()
+    private let headerStackView = UIStackView()
+    private let titleLabel = UILabel()
+    private let subtitleLabel = UILabel()
+    private let searchFieldView = DSTextFieldView()
+    private let contentContainerView = UIView()
+
     private var renderedContentView = UIView()
 
     override func loadView() {
@@ -29,6 +30,7 @@ final class ProductsListViewController: UIViewController, ProductsListView {
         navigationItem.title = nil
         navigationItem.largeTitleDisplayMode = .never
 
+        setupNavigationItems()
         setupUI()
         setupLayout()
         setupBindings()
@@ -52,6 +54,23 @@ final class ProductsListViewController: UIViewController, ProductsListView {
             name: "products_error",
             context: ["errorMessage": message]
         )
+    }
+
+    private func setupNavigationItems() {
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(
+                title: "Советы",
+                style: .plain,
+                target: self,
+                action: #selector(didTapFinanceCenter)
+            ),
+            UIBarButtonItem(
+                title: "Премиум",
+                style: .plain,
+                target: self,
+                action: #selector(didTapPremium)
+            )
+        ]
     }
 
     private func setupUI() {
@@ -88,8 +107,11 @@ final class ProductsListViewController: UIViewController, ProductsListView {
         )
 
         contentContainerView.translatesAutoresizingMaskIntoConstraints = false
+        contentContainerView.setContentHuggingPriority(.defaultLow, for: .vertical)
+        contentContainerView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
 
         view.addSubview(rootStackView)
+
         rootStackView.addArrangedSubview(headerStackView)
         rootStackView.addArrangedSubview(contentContainerView)
 
@@ -100,17 +122,29 @@ final class ProductsListViewController: UIViewController, ProductsListView {
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            rootStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: DS.Spacing.m),
-            rootStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: DS.Spacing.m),
-            rootStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -DS.Spacing.m),
-            rootStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            rootStackView.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: DS.Spacing.m
+            ),
+            rootStackView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: DS.Spacing.m
+            ),
+            rootStackView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -DS.Spacing.m
+            ),
+            rootStackView.bottomAnchor.constraint(
+                equalTo: view.bottomAnchor
+            ),
 
-            contentContainerView.widthAnchor.constraint(equalTo: rootStackView.widthAnchor)
+            contentContainerView.widthAnchor.constraint(
+                equalTo: rootStackView.widthAnchor
+            )
         ])
     }
 
     private func setupBindings() {
-        actionHandler.reloader = nil
         actionHandler.eventSink = self
 
         searchFieldView.onTextChanged = { [weak self] text in
@@ -123,7 +157,11 @@ final class ProductsListViewController: UIViewController, ProductsListView {
         context: [String: String]
     ) {
         do {
-            let screen = try loader.loadScreen(named: name, context: context)
+            let screen = try loader.loadScreen(
+                named: name,
+                context: context
+            )
+
             renderBDUIScreen(screen)
         } catch {
             renderFallbackError("BDUI error: \(error.localizedDescription)")
@@ -139,13 +177,17 @@ final class ProductsListViewController: UIViewController, ProductsListView {
             actionHandler: actionHandler
         )
 
-        guard let contentView = registry.map(node: screen.root, context: mappingContext) else {
+        guard let contentView = registry.map(
+            node: screen.root,
+            context: mappingContext
+        ) else {
             renderFallbackError("Failed to render BDUI screen")
             return
         }
 
         contentView.translatesAutoresizingMaskIntoConstraints = false
         renderedContentView = contentView
+
         contentContainerView.addSubview(contentView)
 
         NSLayoutConstraint.activate([
@@ -176,6 +218,16 @@ final class ProductsListViewController: UIViewController, ProductsListView {
             label.bottomAnchor.constraint(equalTo: contentContainerView.bottomAnchor)
         ])
     }
+
+    @objc
+    private func didTapFinanceCenter() {
+        presenter?.didTapRemoteBDUIScreen(.financeCenter)
+    }
+
+    @objc
+    private func didTapPremium() {
+        presenter?.didTapRemoteBDUIScreen(.premium)
+    }
 }
 
 extension ProductsListViewController: BDUIEventSink {
@@ -183,6 +235,7 @@ extension ProductsListViewController: BDUIEventSink {
         switch id {
         case "products_retry_tap":
             presenter?.didTapRetry()
+
         default:
             break
         }

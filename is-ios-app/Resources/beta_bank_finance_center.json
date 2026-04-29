@@ -1,0 +1,307 @@
+{
+  "root": {
+    "id": "finance_center_root",
+    "type": "scroll",
+    "content": {
+      "spacing": "l",
+      "padding": "m",
+      "backgroundColor": "background"
+    },
+    "subviews": [
+      {
+        "id": "finance_hero_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "elevatedSurface"
+        },
+        "subviews": [
+          {
+            "id": "finance_hero_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "m",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "finance_badge",
+                "type": "container",
+                "content": {
+                  "backgroundColor": "surface",
+                  "padding": "xs",
+                  "cornerRadius": "m"
+                },
+                "subviews": [
+                  {
+                    "id": "finance_badge_text",
+                    "type": "label",
+                    "content": {
+                      "text": "BETA-BANK",
+                      "textStyle": "captionSecondary",
+                      "color": "primary",
+                      "alignment": "left",
+                      "numberOfLines": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "finance_title",
+                "type": "label",
+                "content": {
+                  "text": "Финансовый центр",
+                  "textStyle": "largeTitle",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "finance_subtitle",
+                "type": "label",
+                "content": {
+                  "text": "Подборка полезных действий для контроля расходов, безопасности и работы с продуктами.",
+                  "textStyle": "bodySecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "daily_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "surface"
+        },
+        "subviews": [
+          {
+            "id": "daily_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "s",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "daily_title",
+                "type": "label",
+                "content": {
+                  "text": "На каждый день",
+                  "textStyle": "title",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 1
+                }
+              },
+              {
+                "id": "daily_subtitle",
+                "type": "label",
+                "content": {
+                  "text": "Быстрые действия, которые помогают держать финансы под контролем.",
+                  "textStyle": "bodySecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "daily_divider",
+                "type": "divider",
+                "content": {
+                  "color": "border",
+                  "thickness": 1
+                }
+              },
+              {
+                "id": "daily_1",
+                "type": "label",
+                "content": {
+                  "text": "• Проверяйте баланс перед крупными покупками",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "daily_2",
+                "type": "label",
+                "content": {
+                  "text": "• Используйте поиск, если продуктов стало много",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "daily_3",
+                "type": "label",
+                "content": {
+                  "text": "• Следите за статусом карт и счетов",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "security_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "elevatedSurface"
+        },
+        "subviews": [
+          {
+            "id": "security_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "s",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "security_badge",
+                "type": "container",
+                "content": {
+                  "backgroundColor": "surface",
+                  "padding": "xs",
+                  "cornerRadius": "m"
+                },
+                "subviews": [
+                  {
+                    "id": "security_badge_text",
+                    "type": "label",
+                    "content": {
+                      "text": "ВАЖНО",
+                      "textStyle": "captionSecondary",
+                      "color": "primary",
+                      "alignment": "left",
+                      "numberOfLines": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "security_title",
+                "type": "label",
+                "content": {
+                  "text": "Безопасность",
+                  "textStyle": "title",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "security_text",
+                "type": "label",
+                "content": {
+                  "text": "Не сообщайте пароль, коды подтверждения и данные карт. Сотрудники банка не запрашивают такие данные в чате или по телефону.",
+                  "textStyle": "bodySecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "security_note",
+                "type": "label",
+                "content": {
+                  "text": "Если карта потеряна, заблокируйте её как можно быстрее.",
+                  "textStyle": "bodyAccent",
+                  "color": "primary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "planning_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "surface"
+        },
+        "subviews": [
+          {
+            "id": "planning_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "s",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "planning_title",
+                "type": "label",
+                "content": {
+                  "text": "Планирование",
+                  "textStyle": "title",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 1
+                }
+              },
+              {
+                "id": "planning_text",
+                "type": "label",
+                "content": {
+                  "text": "Раздел помогает быстро оценить продукты и понять, какие действия стоит выполнить в первую очередь.",
+                  "textStyle": "bodySecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "planning_divider",
+                "type": "divider",
+                "content": {
+                  "color": "border",
+                  "thickness": 1
+                }
+              },
+              {
+                "id": "planning_footer",
+                "type": "label",
+                "content": {
+                  "text": "Рекомендации обновляются вместе с контентом банка.",
+                  "textStyle": "captionSecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bottom_space",
+        "type": "spacer",
+        "content": {
+          "height": 32
+        }
+      }
+    ]
+  }
+}

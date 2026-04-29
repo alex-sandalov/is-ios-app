@@ -276,3 +276,60 @@ enum ProductDetailsViewState: Equatable {
 - `textField`
 - `loading`
 - `empty`
+
+# Лабораторная №8 — Remote BDUI Screen
+
+## Что сделано
+
+Добавлен `RemoteBDUIScreen` — абстрактный экран, который принимает endpoint, загружает BDUI JSON с сервера и отображает его через BDUI mapper из лабораторной №7.
+
+Экран не зависит от конкретной фичи и может быть открыт из текущих экранов приложения.
+
+## Remote endpoints
+
+JSON хранится в namespace `beta-bank`:
+
+```text
+https://alfa-itmo.ru/server/v1/storage/beta-bank/lab8_complex_screen
+https://alfa-itmo.ru/server/v1/storage/beta-bank/lab8_offer_screen
+```
+
+## JSON-файлы
+
+```text
+is-ios-app/RemoteBDUI/Screens/lab8_complex_screen.json
+is-ios-app/RemoteBDUI/Screens/lab8_offer_screen.json
+```
+
+## Curl-запросы для загрузки JSON
+
+### beta_bank_finance_center
+
+```bash
+curl --fail-with-body \
+  -X PUT "https://alfaitmo.ru/server/echo/beta-bank%2Fbeta_bank_finance_center" \
+  -H "Content-Type: application/json" \
+  --data-binary "@is-ios-app/Resources/beta_bank_finance_center.json"
+```
+
+### beta_bank_premium
+
+```bash
+curl --fail-with-body \
+  -X PUT "https://alfaitmo.ru/server/echo/beta-bank%2Fbeta_bank_premium" \
+  -H "Content-Type: application/json" \
+  --data-binary "@is-ios-app/Resources/beta_bank_premium.json"
+```
+
+## Дополнительные задания
+
+### Доп 1 — сложный экран
+
+Сделан `lab8_complex_screen`: экран со scroll, несколькими карточками, контейнерами, divider и большим количеством контента.
+
+### Доп 2 — несколько вариаций
+
+Сделаны две remote BDUI вариации:
+
+- `lab8_complex_screen`
+- `lab8_offer_screen`

@@ -1,0 +1,205 @@
+{
+  "root": {
+    "id": "premium_root",
+    "type": "scroll",
+    "content": {
+      "spacing": "l",
+      "padding": "m",
+      "backgroundColor": "background"
+    },
+    "subviews": [
+      {
+        "id": "premium_hero_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "elevatedSurface"
+        },
+        "subviews": [
+          {
+            "id": "premium_hero_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "m",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "premium_badge",
+                "type": "container",
+                "content": {
+                  "backgroundColor": "surface",
+                  "padding": "xs",
+                  "cornerRadius": "m"
+                },
+                "subviews": [
+                  {
+                    "id": "premium_badge_text",
+                    "type": "label",
+                    "content": {
+                      "text": "BETA PREMIUM",
+                      "textStyle": "captionSecondary",
+                      "color": "primary",
+                      "alignment": "left",
+                      "numberOfLines": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "premium_title",
+                "type": "label",
+                "content": {
+                  "text": "Премиум-обслуживание",
+                  "textStyle": "largeTitle",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "premium_subtitle",
+                "type": "label",
+                "content": {
+                  "text": "Больше привилегий для поездок, покупок и ежедневных финансовых задач.",
+                  "textStyle": "bodySecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "premium_benefits_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "surface"
+        },
+        "subviews": [
+          {
+            "id": "premium_benefits_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "s",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "premium_benefits_title",
+                "type": "label",
+                "content": {
+                  "text": "Что входит",
+                  "textStyle": "title",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 1
+                }
+              },
+              {
+                "id": "premium_benefit_1",
+                "type": "label",
+                "content": {
+                  "text": "• повышенный кэшбэк на выбранные категории",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "premium_benefit_2",
+                "type": "label",
+                "content": {
+                  "text": "• приоритетная поддержка в приложении",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "premium_benefit_3",
+                "type": "label",
+                "content": {
+                  "text": "• специальные условия по продуктам банка",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "premium_conditions_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "surface"
+        },
+        "subviews": [
+          {
+            "id": "premium_conditions_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "s",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "premium_conditions_title",
+                "type": "label",
+                "content": {
+                  "text": "Условия",
+                  "textStyle": "title",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 1
+                }
+              },
+              {
+                "id": "premium_conditions_text",
+                "type": "label",
+                "content": {
+                  "text": "Подключение доступно клиентам с активной картой или счётом. Итоговые условия отображаются перед подтверждением.",
+                  "textStyle": "bodySecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "premium_conditions_divider",
+                "type": "divider",
+                "content": {
+                  "color": "border",
+                  "thickness": 1
+                }
+              },
+              {
+                "id": "premium_conditions_note",
+                "type": "label",
+                "content": {
+                  "text": "Предложение может отличаться в зависимости от профиля клиента.",
+                  "textStyle": "captionSecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
