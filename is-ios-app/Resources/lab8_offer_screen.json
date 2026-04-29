@@ -1,0 +1,239 @@
+{
+  "root": {
+    "id": "beta_bank_offer_root",
+    "type": "scroll",
+    "content": {
+      "spacing": "l",
+      "padding": "m",
+      "backgroundColor": "background"
+    },
+    "subviews": [
+      {
+        "id": "offer_hero_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "elevatedSurface"
+        },
+        "subviews": [
+          {
+            "id": "offer_hero_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "m",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "offer_badge",
+                "type": "container",
+                "content": {
+                  "backgroundColor": "surface",
+                  "padding": "xs",
+                  "cornerRadius": "m"
+                },
+                "subviews": [
+                  {
+                    "id": "offer_badge_text",
+                    "type": "label",
+                    "content": {
+                      "text": "BETA-BANK OFFER",
+                      "textStyle": "captionSecondary",
+                      "color": "primary",
+                      "alignment": "left",
+                      "numberOfLines": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "offer_title",
+                "type": "label",
+                "content": {
+                  "text": "Персональное предложение",
+                  "textStyle": "largeTitle",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "offer_subtitle",
+                "type": "label",
+                "content": {
+                  "text": "Мы подготовили специальное предложение для клиентов Beta-Bank.",
+                  "textStyle": "bodySecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "offer_conditions_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "surface"
+        },
+        "subviews": [
+          {
+            "id": "offer_conditions_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "s",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "offer_conditions_title",
+                "type": "label",
+                "content": {
+                  "text": "Условия",
+                  "textStyle": "title",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 1
+                }
+              },
+              {
+                "id": "offer_condition_1",
+                "type": "label",
+                "content": {
+                  "text": "• обслуживание — бесплатно",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "offer_condition_2",
+                "type": "label",
+                "content": {
+                  "text": "• повышенный кэшбэк на повседневные покупки",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "offer_condition_3",
+                "type": "label",
+                "content": {
+                  "text": "• быстрый доступ к продуктам в приложении",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "offer_info_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "surface"
+        },
+        "subviews": [
+          {
+            "id": "offer_info_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "s",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "offer_info_title",
+                "type": "label",
+                "content": {
+                  "text": "Почему это удобно",
+                  "textStyle": "title",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 1
+                }
+              },
+              {
+                "id": "offer_info_text",
+                "type": "label",
+                "content": {
+                  "text": "Предложение отображается как remote BDUI-экран. Его можно обновить на сервере, не меняя код основного экрана списка продуктов.",
+                  "textStyle": "bodySecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "offer_info_divider",
+                "type": "divider",
+                "content": {
+                  "color": "border",
+                  "thickness": 1
+                }
+              },
+              {
+                "id": "offer_info_footer",
+                "type": "label",
+                "content": {
+                  "text": "Актуально для демонстрации Beta-Bank remote screens.",
+                  "textStyle": "captionSecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "offer_button_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "surface"
+        },
+        "subviews": [
+          {
+            "id": "offer_button_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "s",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "offer_button",
+                "type": "button",
+                "content": {
+                  "title": "Понятно",
+                  "style": "primary",
+                  "isEnabled": true
+                },
+                "action": {
+                  "type": "callback",
+                  "id": "offer_ok"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

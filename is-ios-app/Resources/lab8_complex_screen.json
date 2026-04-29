@@ -1,0 +1,307 @@
+{
+  "root": {
+    "id": "beta_bank_hub_root",
+    "type": "scroll",
+    "content": {
+      "spacing": "l",
+      "padding": "m",
+      "backgroundColor": "background"
+    },
+    "subviews": [
+      {
+        "id": "hub_hero_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "elevatedSurface"
+        },
+        "subviews": [
+          {
+            "id": "hub_hero_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "m",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "hub_badge",
+                "type": "container",
+                "content": {
+                  "backgroundColor": "surface",
+                  "padding": "xs",
+                  "cornerRadius": "m"
+                },
+                "subviews": [
+                  {
+                    "id": "hub_badge_text",
+                    "type": "label",
+                    "content": {
+                      "text": "BETA-BANK",
+                      "textStyle": "captionSecondary",
+                      "color": "primary",
+                      "alignment": "left",
+                      "numberOfLines": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "hub_title",
+                "type": "label",
+                "content": {
+                  "text": "Финансовый центр",
+                  "textStyle": "largeTitle",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "hub_subtitle",
+                "type": "label",
+                "content": {
+                  "text": "Собрали полезные возможности Beta-Bank в одном месте: продукты, безопасность, рекомендации и быстрые действия.",
+                  "textStyle": "bodySecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "actions_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "surface"
+        },
+        "subviews": [
+          {
+            "id": "actions_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "s",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "actions_title",
+                "type": "label",
+                "content": {
+                  "text": "Быстрые действия",
+                  "textStyle": "title",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 1
+                }
+              },
+              {
+                "id": "actions_subtitle",
+                "type": "label",
+                "content": {
+                  "text": "Операции, которые чаще всего нужны после входа в банк.",
+                  "textStyle": "bodySecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "actions_divider",
+                "type": "divider",
+                "content": {
+                  "color": "border",
+                  "thickness": 1
+                }
+              },
+              {
+                "id": "action_1",
+                "type": "label",
+                "content": {
+                  "text": "• Проверить баланс по картам и счетам",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "action_2",
+                "type": "label",
+                "content": {
+                  "text": "• Найти нужный продукт через поиск",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "action_3",
+                "type": "label",
+                "content": {
+                  "text": "• Посмотреть персональные предложения",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "security_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "elevatedSurface"
+        },
+        "subviews": [
+          {
+            "id": "security_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "s",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "security_badge",
+                "type": "container",
+                "content": {
+                  "backgroundColor": "surface",
+                  "padding": "xs",
+                  "cornerRadius": "m"
+                },
+                "subviews": [
+                  {
+                    "id": "security_badge_text",
+                    "type": "label",
+                    "content": {
+                      "text": "SECURITY",
+                      "textStyle": "captionSecondary",
+                      "color": "primary",
+                      "alignment": "left",
+                      "numberOfLines": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "security_title",
+                "type": "label",
+                "content": {
+                  "text": "Безопасность аккаунта",
+                  "textStyle": "title",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "security_text",
+                "type": "label",
+                "content": {
+                  "text": "Не передавайте пароль и коды подтверждения третьим лицам. Beta-Bank никогда не просит назвать пароль от приложения.",
+                  "textStyle": "bodySecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "security_note",
+                "type": "label",
+                "content": {
+                  "text": "Совет: если карта потеряна, заблокируйте её как можно быстрее.",
+                  "textStyle": "bodyAccent",
+                  "color": "primary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "remote_feature_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "surface"
+        },
+        "subviews": [
+          {
+            "id": "remote_feature_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "s",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "remote_feature_title",
+                "type": "label",
+                "content": {
+                  "text": "Обновляемые разделы",
+                  "textStyle": "title",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 1
+                }
+              },
+              {
+                "id": "remote_feature_text",
+                "type": "label",
+                "content": {
+                  "text": "Этот раздел может обновляться удалённо: меняются тексты, карточки и порядок блоков, а приложение использует тот же BDUI-рендеринг.",
+                  "textStyle": "bodySecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "remote_feature_divider",
+                "type": "divider",
+                "content": {
+                  "color": "border",
+                  "thickness": 1
+                }
+              },
+              {
+                "id": "remote_feature_footer",
+                "type": "label",
+                "content": {
+                  "text": "Контент пришёл с remote storage Beta-Bank.",
+                  "textStyle": "captionSecondary",
+                  "color": "textSecondary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bottom_space",
+        "type": "spacer",
+        "content": {
+          "height": 32
+        }
+      }
+    ]
+  }
+}
