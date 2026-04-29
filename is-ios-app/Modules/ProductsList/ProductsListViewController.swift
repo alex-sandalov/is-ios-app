@@ -59,16 +59,16 @@ final class ProductsListViewController: UIViewController, ProductsListView {
     private func setupNavigationItems() {
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(
-                title: "BDUI",
+                title: "Советы",
                 style: .plain,
                 target: self,
-                action: #selector(didTapComplexRemoteBDUI)
+                action: #selector(didTapFinanceCenter)
             ),
             UIBarButtonItem(
-                title: "Offer",
+                title: "Премиум",
                 style: .plain,
                 target: self,
-                action: #selector(didTapOfferRemoteBDUI)
+                action: #selector(didTapPremium)
             )
         ]
     }
@@ -220,13 +220,13 @@ final class ProductsListViewController: UIViewController, ProductsListView {
     }
 
     @objc
-    private func didTapComplexRemoteBDUI() {
-        presenter?.didTapRemoteBDUIScreen(.complex)
+    private func didTapFinanceCenter() {
+        presenter?.didTapRemoteBDUIScreen(.financeCenter)
     }
 
     @objc
-    private func didTapOfferRemoteBDUI() {
-        presenter?.didTapRemoteBDUIScreen(.offer)
+    private func didTapPremium() {
+        presenter?.didTapRemoteBDUIScreen(.premium)
     }
 }
 

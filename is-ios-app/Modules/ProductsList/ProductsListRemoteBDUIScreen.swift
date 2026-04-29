@@ -1,26 +1,26 @@
 import Foundation
 
 enum ProductsListRemoteBDUIScreen {
-    case complex
-    case offer
+    case financeCenter
+    case premium
 
     var key: String {
         switch self {
-        case .complex:
-            return "lab8_complex_screen"
+        case .financeCenter:
+            return "beta_bank_finance_center"
 
-        case .offer:
-            return "lab8_offer_screen"
+        case .premium:
+            return "beta_bank_premium"
         }
     }
 
     var title: String {
         switch self {
-        case .complex:
-            return "Remote BDUI"
+        case .financeCenter:
+            return "Финансовый центр"
 
-        case .offer:
-            return "Offer"
+        case .premium:
+            return "Премиум"
         }
     }
 }

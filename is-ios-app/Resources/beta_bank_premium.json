@@ -1,6 +1,6 @@
 {
   "root": {
-    "id": "beta_bank_offer_root",
+    "id": "premium_root",
     "type": "scroll",
     "content": {
       "spacing": "l",
@@ -9,7 +9,7 @@
     },
     "subviews": [
       {
-        "id": "offer_hero_card",
+        "id": "premium_hero_card",
         "type": "card",
         "content": {
           "padding": "m",
@@ -17,7 +17,7 @@
         },
         "subviews": [
           {
-            "id": "offer_hero_stack",
+            "id": "premium_hero_stack",
             "type": "vStack",
             "content": {
               "spacing": "m",
@@ -26,7 +26,7 @@
             },
             "subviews": [
               {
-                "id": "offer_badge",
+                "id": "premium_badge",
                 "type": "container",
                 "content": {
                   "backgroundColor": "surface",
@@ -35,10 +35,10 @@
                 },
                 "subviews": [
                   {
-                    "id": "offer_badge_text",
+                    "id": "premium_badge_text",
                     "type": "label",
                     "content": {
-                      "text": "BETA-BANK OFFER",
+                      "text": "BETA PREMIUM",
                       "textStyle": "captionSecondary",
                       "color": "primary",
                       "alignment": "left",
@@ -48,10 +48,10 @@
                 ]
               },
               {
-                "id": "offer_title",
+                "id": "premium_title",
                 "type": "label",
                 "content": {
-                  "text": "Персональное предложение",
+                  "text": "Премиум-обслуживание",
                   "textStyle": "largeTitle",
                   "color": "textPrimary",
                   "alignment": "left",
@@ -59,10 +59,10 @@
                 }
               },
               {
-                "id": "offer_subtitle",
+                "id": "premium_subtitle",
                 "type": "label",
                 "content": {
-                  "text": "Мы подготовили специальное предложение для клиентов Beta-Bank.",
+                  "text": "Больше привилегий для поездок, покупок и ежедневных финансовых задач.",
                   "textStyle": "bodySecondary",
                   "color": "textSecondary",
                   "alignment": "left",
@@ -74,7 +74,7 @@
         ]
       },
       {
-        "id": "offer_conditions_card",
+        "id": "premium_benefits_card",
         "type": "card",
         "content": {
           "padding": "m",
@@ -82,7 +82,7 @@
         },
         "subviews": [
           {
-            "id": "offer_conditions_stack",
+            "id": "premium_benefits_stack",
             "type": "vStack",
             "content": {
               "spacing": "s",
@@ -91,7 +91,72 @@
             },
             "subviews": [
               {
-                "id": "offer_conditions_title",
+                "id": "premium_benefits_title",
+                "type": "label",
+                "content": {
+                  "text": "Что входит",
+                  "textStyle": "title",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 1
+                }
+              },
+              {
+                "id": "premium_benefit_1",
+                "type": "label",
+                "content": {
+                  "text": "• повышенный кэшбэк на выбранные категории",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "premium_benefit_2",
+                "type": "label",
+                "content": {
+                  "text": "• приоритетная поддержка в приложении",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              },
+              {
+                "id": "premium_benefit_3",
+                "type": "label",
+                "content": {
+                  "text": "• специальные условия по продуктам банка",
+                  "textStyle": "body",
+                  "color": "textPrimary",
+                  "alignment": "left",
+                  "numberOfLines": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "premium_conditions_card",
+        "type": "card",
+        "content": {
+          "padding": "m",
+          "backgroundColor": "surface"
+        },
+        "subviews": [
+          {
+            "id": "premium_conditions_stack",
+            "type": "vStack",
+            "content": {
+              "spacing": "s",
+              "padding": "xs",
+              "backgroundColor": "clear"
+            },
+            "subviews": [
+              {
+                "id": "premium_conditions_title",
                 "type": "label",
                 "content": {
                   "text": "Условия",
@@ -102,75 +167,10 @@
                 }
               },
               {
-                "id": "offer_condition_1",
+                "id": "premium_conditions_text",
                 "type": "label",
                 "content": {
-                  "text": "• обслуживание — бесплатно",
-                  "textStyle": "body",
-                  "color": "textPrimary",
-                  "alignment": "left",
-                  "numberOfLines": 0
-                }
-              },
-              {
-                "id": "offer_condition_2",
-                "type": "label",
-                "content": {
-                  "text": "• повышенный кэшбэк на повседневные покупки",
-                  "textStyle": "body",
-                  "color": "textPrimary",
-                  "alignment": "left",
-                  "numberOfLines": 0
-                }
-              },
-              {
-                "id": "offer_condition_3",
-                "type": "label",
-                "content": {
-                  "text": "• быстрый доступ к продуктам в приложении",
-                  "textStyle": "body",
-                  "color": "textPrimary",
-                  "alignment": "left",
-                  "numberOfLines": 0
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "offer_info_card",
-        "type": "card",
-        "content": {
-          "padding": "m",
-          "backgroundColor": "surface"
-        },
-        "subviews": [
-          {
-            "id": "offer_info_stack",
-            "type": "vStack",
-            "content": {
-              "spacing": "s",
-              "padding": "xs",
-              "backgroundColor": "clear"
-            },
-            "subviews": [
-              {
-                "id": "offer_info_title",
-                "type": "label",
-                "content": {
-                  "text": "Почему это удобно",
-                  "textStyle": "title",
-                  "color": "textPrimary",
-                  "alignment": "left",
-                  "numberOfLines": 1
-                }
-              },
-              {
-                "id": "offer_info_text",
-                "type": "label",
-                "content": {
-                  "text": "Предложение отображается как remote BDUI-экран. Его можно обновить на сервере, не меняя код основного экрана списка продуктов.",
+                  "text": "Подключение доступно клиентам с активной картой или счётом. Итоговые условия отображаются перед подтверждением.",
                   "textStyle": "bodySecondary",
                   "color": "textSecondary",
                   "alignment": "left",
@@ -178,7 +178,7 @@
                 }
               },
               {
-                "id": "offer_info_divider",
+                "id": "premium_conditions_divider",
                 "type": "divider",
                 "content": {
                   "color": "border",
@@ -186,48 +186,14 @@
                 }
               },
               {
-                "id": "offer_info_footer",
+                "id": "premium_conditions_note",
                 "type": "label",
                 "content": {
-                  "text": "Актуально для демонстрации Beta-Bank remote screens.",
+                  "text": "Предложение может отличаться в зависимости от профиля клиента.",
                   "textStyle": "captionSecondary",
                   "color": "textSecondary",
                   "alignment": "left",
                   "numberOfLines": 0
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "offer_button_card",
-        "type": "card",
-        "content": {
-          "padding": "m",
-          "backgroundColor": "surface"
-        },
-        "subviews": [
-          {
-            "id": "offer_button_stack",
-            "type": "vStack",
-            "content": {
-              "spacing": "s",
-              "padding": "xs",
-              "backgroundColor": "clear"
-            },
-            "subviews": [
-              {
-                "id": "offer_button",
-                "type": "button",
-                "content": {
-                  "title": "Понятно",
-                  "style": "primary",
-                  "isEnabled": true
-                },
-                "action": {
-                  "type": "callback",
-                  "id": "offer_ok"
                 }
               }
             ]

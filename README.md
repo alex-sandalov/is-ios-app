@@ -303,22 +303,22 @@ is-ios-app/RemoteBDUI/Screens/lab8_offer_screen.json
 
 ## Curl-запросы для загрузки JSON
 
-### lab8_complex_screen
+### beta_bank_finance_center
 
 ```bash
 curl --fail-with-body \
-  -X PUT "https://alfaitmo.ru/server/echo/beta-bank%2Flab8_complex_screen" \
+  -X PUT "https://alfaitmo.ru/server/echo/beta-bank%2Fbeta_bank_finance_center" \
   -H "Content-Type: application/json" \
-  --data-binary "@is-ios-app/Resources/lab8_complex_screen.json"
+  --data-binary "@is-ios-app/Resources/beta_bank_finance_center.json"
 ```
 
-### lab8_offer_screen
+### beta_bank_premium
 
 ```bash
 curl --fail-with-body \
-  -X PUT "https://alfaitmo.ru/server/echo/beta-bank%2Flab8_offer_screen" \
+  -X PUT "https://alfaitmo.ru/server/echo/beta-bank%2Fbeta_bank_premium" \
   -H "Content-Type: application/json" \
-  --data-binary "@is-ios-app/Resources/lab8_offer_screen.json"
+  --data-binary "@is-ios-app/Resources/beta_bank_premium.json"
 ```
 
 ## Дополнительные задания

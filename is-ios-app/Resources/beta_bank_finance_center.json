@@ -1,6 +1,6 @@
 {
   "root": {
-    "id": "beta_bank_hub_root",
+    "id": "finance_center_root",
     "type": "scroll",
     "content": {
       "spacing": "l",
@@ -9,7 +9,7 @@
     },
     "subviews": [
       {
-        "id": "hub_hero_card",
+        "id": "finance_hero_card",
         "type": "card",
         "content": {
           "padding": "m",
@@ -17,7 +17,7 @@
         },
         "subviews": [
           {
-            "id": "hub_hero_stack",
+            "id": "finance_hero_stack",
             "type": "vStack",
             "content": {
               "spacing": "m",
@@ -26,7 +26,7 @@
             },
             "subviews": [
               {
-                "id": "hub_badge",
+                "id": "finance_badge",
                 "type": "container",
                 "content": {
                   "backgroundColor": "surface",
@@ -35,7 +35,7 @@
                 },
                 "subviews": [
                   {
-                    "id": "hub_badge_text",
+                    "id": "finance_badge_text",
                     "type": "label",
                     "content": {
                       "text": "BETA-BANK",
@@ -48,7 +48,7 @@
                 ]
               },
               {
-                "id": "hub_title",
+                "id": "finance_title",
                 "type": "label",
                 "content": {
                   "text": "Финансовый центр",
@@ -59,10 +59,10 @@
                 }
               },
               {
-                "id": "hub_subtitle",
+                "id": "finance_subtitle",
                 "type": "label",
                 "content": {
-                  "text": "Собрали полезные возможности Beta-Bank в одном месте: продукты, безопасность, рекомендации и быстрые действия.",
+                  "text": "Подборка полезных действий для контроля расходов, безопасности и работы с продуктами.",
                   "textStyle": "bodySecondary",
                   "color": "textSecondary",
                   "alignment": "left",
@@ -74,7 +74,7 @@
         ]
       },
       {
-        "id": "actions_card",
+        "id": "daily_card",
         "type": "card",
         "content": {
           "padding": "m",
@@ -82,7 +82,7 @@
         },
         "subviews": [
           {
-            "id": "actions_stack",
+            "id": "daily_stack",
             "type": "vStack",
             "content": {
               "spacing": "s",
@@ -91,10 +91,10 @@
             },
             "subviews": [
               {
-                "id": "actions_title",
+                "id": "daily_title",
                 "type": "label",
                 "content": {
-                  "text": "Быстрые действия",
+                  "text": "На каждый день",
                   "textStyle": "title",
                   "color": "textPrimary",
                   "alignment": "left",
@@ -102,10 +102,10 @@
                 }
               },
               {
-                "id": "actions_subtitle",
+                "id": "daily_subtitle",
                 "type": "label",
                 "content": {
-                  "text": "Операции, которые чаще всего нужны после входа в банк.",
+                  "text": "Быстрые действия, которые помогают держать финансы под контролем.",
                   "textStyle": "bodySecondary",
                   "color": "textSecondary",
                   "alignment": "left",
@@ -113,7 +113,7 @@
                 }
               },
               {
-                "id": "actions_divider",
+                "id": "daily_divider",
                 "type": "divider",
                 "content": {
                   "color": "border",
@@ -121,10 +121,10 @@
                 }
               },
               {
-                "id": "action_1",
+                "id": "daily_1",
                 "type": "label",
                 "content": {
-                  "text": "• Проверить баланс по картам и счетам",
+                  "text": "• Проверяйте баланс перед крупными покупками",
                   "textStyle": "body",
                   "color": "textPrimary",
                   "alignment": "left",
@@ -132,10 +132,10 @@
                 }
               },
               {
-                "id": "action_2",
+                "id": "daily_2",
                 "type": "label",
                 "content": {
-                  "text": "• Найти нужный продукт через поиск",
+                  "text": "• Используйте поиск, если продуктов стало много",
                   "textStyle": "body",
                   "color": "textPrimary",
                   "alignment": "left",
@@ -143,10 +143,10 @@
                 }
               },
               {
-                "id": "action_3",
+                "id": "daily_3",
                 "type": "label",
                 "content": {
-                  "text": "• Посмотреть персональные предложения",
+                  "text": "• Следите за статусом карт и счетов",
                   "textStyle": "body",
                   "color": "textPrimary",
                   "alignment": "left",
@@ -187,7 +187,7 @@
                     "id": "security_badge_text",
                     "type": "label",
                     "content": {
-                      "text": "SECURITY",
+                      "text": "ВАЖНО",
                       "textStyle": "captionSecondary",
                       "color": "primary",
                       "alignment": "left",
@@ -200,7 +200,7 @@
                 "id": "security_title",
                 "type": "label",
                 "content": {
-                  "text": "Безопасность аккаунта",
+                  "text": "Безопасность",
                   "textStyle": "title",
                   "color": "textPrimary",
                   "alignment": "left",
@@ -211,7 +211,7 @@
                 "id": "security_text",
                 "type": "label",
                 "content": {
-                  "text": "Не передавайте пароль и коды подтверждения третьим лицам. Beta-Bank никогда не просит назвать пароль от приложения.",
+                  "text": "Не сообщайте пароль, коды подтверждения и данные карт. Сотрудники банка не запрашивают такие данные в чате или по телефону.",
                   "textStyle": "bodySecondary",
                   "color": "textSecondary",
                   "alignment": "left",
@@ -222,7 +222,7 @@
                 "id": "security_note",
                 "type": "label",
                 "content": {
-                  "text": "Совет: если карта потеряна, заблокируйте её как можно быстрее.",
+                  "text": "Если карта потеряна, заблокируйте её как можно быстрее.",
                   "textStyle": "bodyAccent",
                   "color": "primary",
                   "alignment": "left",
@@ -234,7 +234,7 @@
         ]
       },
       {
-        "id": "remote_feature_card",
+        "id": "planning_card",
         "type": "card",
         "content": {
           "padding": "m",
@@ -242,7 +242,7 @@
         },
         "subviews": [
           {
-            "id": "remote_feature_stack",
+            "id": "planning_stack",
             "type": "vStack",
             "content": {
               "spacing": "s",
@@ -251,10 +251,10 @@
             },
             "subviews": [
               {
-                "id": "remote_feature_title",
+                "id": "planning_title",
                 "type": "label",
                 "content": {
-                  "text": "Обновляемые разделы",
+                  "text": "Планирование",
                   "textStyle": "title",
                   "color": "textPrimary",
                   "alignment": "left",
@@ -262,10 +262,10 @@
                 }
               },
               {
-                "id": "remote_feature_text",
+                "id": "planning_text",
                 "type": "label",
                 "content": {
-                  "text": "Этот раздел может обновляться удалённо: меняются тексты, карточки и порядок блоков, а приложение использует тот же BDUI-рендеринг.",
+                  "text": "Раздел помогает быстро оценить продукты и понять, какие действия стоит выполнить в первую очередь.",
                   "textStyle": "bodySecondary",
                   "color": "textSecondary",
                   "alignment": "left",
@@ -273,7 +273,7 @@
                 }
               },
               {
-                "id": "remote_feature_divider",
+                "id": "planning_divider",
                 "type": "divider",
                 "content": {
                   "color": "border",
@@ -281,10 +281,10 @@
                 }
               },
               {
-                "id": "remote_feature_footer",
+                "id": "planning_footer",
                 "type": "label",
                 "content": {
-                  "text": "Контент пришёл с remote storage Beta-Bank.",
+                  "text": "Рекомендации обновляются вместе с контентом банка.",
                   "textStyle": "captionSecondary",
                   "color": "textSecondary",
                   "alignment": "left",
